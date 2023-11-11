@@ -2,6 +2,8 @@ from socket import *
 import threading
 from _thread import *
 
+from MockSprinkler import MockSprinkler
+
 lock = threading.Lock()
 
 def threaded_server(c):
@@ -12,9 +14,11 @@ def threaded_server(c):
 
         print(data.decode())
 
-        message = "Ping Back".encode()
+        c.send(b'HTTP/1.1 200 OK\r\n')
+        c.send(b'Content-Type: text/html\r\n')
 
-        c.send(message)
+        c.send("\r\n".encode())
+        c.close()
 
         lock.release()
         break

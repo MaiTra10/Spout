@@ -41,9 +41,8 @@ class MockSprinkler:
         else:
             return f"{self.sprinkler_type} sprinkler is OFF."
 
-
 # Example usage:
-if __name__ == "__main__":
+""" if __name__ == "__main__":
     grass_sprinkler = MockSprinkler("Grass")
 
     print(grass_sprinkler.status())
@@ -53,4 +52,4 @@ if __name__ == "__main__":
     time.sleep(30)  # Simulate 30 seconds of run time
     print(grass_sprinkler.status())
     grass_sprinkler.turn_off()
-    print(grass_sprinkler.get_run_time())
+    print(grass_sprinkler.get_run_time()) """
