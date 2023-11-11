@@ -1,45 +1,87 @@
 import time
 
 class MockSprinkler:
-    def __init__(self, sprinkler_type):
-        self.sprinkler_type = sprinkler_type
-        self.is_on = False
-        self.run_time = 0  # Default run time is set to 0 minutes
-        self.start_time = None
 
-    def turn_on(self):
+    def __init__(self, sid, name, timer_mode, seed_type):
+
+        self.sprinkler_id = sid
+        self.sprinker_name = name
+        self.sprinkler_timer_mode = timer_mode # Auto or Manual
+        self.schedule = []
+        self.seed_type = seed_type
+        self.status = False
+        self.previous_run_time = None
+        self.previous_start_time = None
+
+    def set_sprinkler_name(self, name):
+        self.sprinkler_name = name
+
+    def set_sprinkler_timer_mode(self, mode):
+        self.sprinkler_timer_mode = mode
+
+    def set_seed_type(self, seed_type):
+        self.seed_type = seed_type
+
+    def set_status(self, status):
+        self.status = status
+
+    def set_previous_run_time(self, run_time):
+        self.previous_run_time = run_time
+
+    def set_previous_start_time(self, start_time):
+        self.previous_start_time = start_time
+
+"""     def turn_on(self):
+
         if not self.is_on:
+
             self.is_on = True
             self.start_time = time.time()
-            print(f"{self.sprinkler_type} Sprinkler Status: ON")
+            return(f"{self.sprinkler_type} Sprinkler Status: ON")
+
         else:
-            print(f"{self.sprinkler_type} Sprinkler is already ON!")
+
+            return(f"{self.sprinkler_type} Sprinkler is already ON!")
 
     def turn_off(self):
+
         if self.is_on:
-            elapsed_time = round(time.time() - self.start_time)  # Calculate elapsed time in seconds
+
+            elapsed_time = round(time.time() - self.start_time)
             self.is_on = False
-            self.run_time += elapsed_time // 60  # Convert elapsed time to minutes and add to total run time
+            self.run_time += elapsed_time // 60
             self.start_time = None
-            print(f"{self.sprinkler_type} Sprinkler Status: OFF")
+
+            return(f"{self.sprinkler_type} Sprinkler Status: OFF")
+
         else:
-            print(f"{self.sprinkler_type} Sprinkler is already OFF!")
+
+            return(f"{self.sprinkler_type} Sprinkler is already OFF!")
 
     def set_run_time(self, minutes):
+
         if minutes < 0:
-            print("Run time must be a non-negative value.")
+
+            return("Run time must be a non-negative value.")
+
         else:
+
             self.run_time = minutes
 
     def get_run_time(self):
+
         return f"Run time for {self.sprinkler_type} sprinkler is set to {self.run_time} minutes."
 
     def status(self):
+
         if self.is_on:
+
             elapsed_time = round(time.time() - self.start_time)
             return f"{self.sprinkler_type} sprinkler is ON. Elapsed time: {elapsed_time} seconds."
+        
         else:
-            return f"{self.sprinkler_type} sprinkler is OFF."
+
+            return f"{self.sprinkler_type} sprinkler is OFF." """
 
 # Example usage:
 """ if __name__ == "__main__":

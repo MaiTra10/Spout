@@ -12,8 +12,8 @@ s.close() """
 
 import requests
 
-data = {'test': 'item'}
+data = {'function': 'add', 'id': 0, 'name': 'Front Yard Flower Sprinkler', 'timer_mode': 'Auto', 'seed_type': 0}
 
-r = requests.get('http://10.14.101.143:12000', data)
+r = requests.post('http://10.14.101.143:12000', data)
 
-print(r.content)
+print(r)
