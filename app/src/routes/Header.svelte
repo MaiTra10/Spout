@@ -1,17 +1,16 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/Spout.png';
 </script>
 
 <header class="flex justify-between items-center px-12 h-24 sticky">
-	<div class="flex justify-center items-center">
-		<h1 class="">Spout</h1>
+	<div class="flex w-96">
 		<a href="/">
 			<img src={logo} alt="SvelteKit" />
 		</a>
 	</div>
 
-	<nav class="flex items-center justify-between md:order-none text-xl ">
+	<nav class="flex items-center justify-between md:order-none text-xl flex-1 px-10 ">
 		<!-- <svg viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg> -->
