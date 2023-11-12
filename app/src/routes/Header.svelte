@@ -1,47 +1,39 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/Spout.png';
+	import logo from '$lib/images/spout.png';
 </script>
 
-<header class="flex justify-between items-center px-12 h-24 sticky">
-	<div class="flex w-96">
+<header class="flex justify-between items-center h-24 sticky w-10/12">
+	<div class="flex w-60 justify-center items-center">
 		<a href="/">
-			<img src={logo} alt="SvelteKit" />
+			<img src={logo} alt="Spout" />
 		</a>
 	</div>
 
-	<nav class="flex items-center justify-between md:order-none text-xl flex-1 px-10 ">
-		<!-- <svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg> -->
+	<nav class="flex items-center justify-center md:order-none text-xl flex-1 ">
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">My Home</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">Connect</a>
+				<a href="/about">About</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/sverdle' ? 'page' : undefined}>
 				<a href="/sverdle">Support</a>
 			</li>
 		</ul>
-		<!-- <svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg> -->
 	</nav>
-	<a href="/login" class="bg-blue-400 h-12 w-36 rounded-md text-white flex justify-center items-center">
-		Login
-	</a>
+	<div class="w-72 flex justify-end items-center ">
+		<a href="/login" class="bg-primary h-12 w-36 rounded-md flex justify-center items-center text-white">
+			Login
+		</a>
+	</div>
+
 </header>
 
 
 <style>
 
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
 
 	ul {
 		position: relative;

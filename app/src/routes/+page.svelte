@@ -1,6 +1,5 @@
 <script>
-	import Counter from './Counter.svelte';
-
+	import Dashboard from './components/Dashboard.svelte';
 </script>
 
 <svelte:head>
@@ -8,14 +7,13 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-	<div>
-		<h1>Dashboard</h1>
-		<button class="bg-green-600 h-12 w-36 rounded-md text-white flex justify-center items-center">Outdoor</button>
+<section class="flex-1 p-4">
+	<div class="self-start flex flex-col items-start gap-3">
+		<h1 class="text-3xl">Dashboard</h1>
 	</div>
-
-	<Counter />
+	<Dashboard />
 </section>
+  
 
 <style>
 	section {
@@ -23,9 +21,5 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-	}
-
-	h1 {
-		width: 100%;
 	}
 </style>

@@ -1,3 +1,12 @@
+<style>
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 30px; /* Adjust the value as needed */
+        font-style: italic;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
 <svelte:head>
     <title>About</title>
     <meta name="description" content="About Spouts Smart Irrigation System" />

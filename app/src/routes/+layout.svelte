@@ -7,12 +7,11 @@
 <div class="app">
 	<Header />
 
-	<main>
+	<main class="w-10/12 rounded-lg bg-white shadow-md shadow-slate-300">
 		<slot />
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
 	</footer>
 </div>
 
@@ -21,6 +20,7 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		align-items: center;
 	}
 
 	main {
@@ -28,11 +28,11 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
+
 	}
+
 
 	footer {
 		display: flex;
