@@ -15,6 +15,7 @@ def create_client_response(response):
     try:
 
         return (
+            
             f'HTTP/1.1 {response["status"]} {response["msg"]}\r\n'
             f'Content-Type: text/html\r\n\r\n'
             f'{(response["content"])}\r\n'
