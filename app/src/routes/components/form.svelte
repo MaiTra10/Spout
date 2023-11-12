@@ -19,19 +19,26 @@
   }
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit} class="flex flex-col">
   {#if errorMessage}
     <p style="color: red;">{errorMessage}</p>
   {/if}
+  <div class="flex flex-col">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" bind:value={card.name} />
+    </div>
 
-  <label for="name">Name:</label>
-  <input type="text" id="name" bind:value={card.name} />
+    <div>
+      <label for="seedType">Seed Type:</label>
+      <input type="text" id="seedType" bind:value={card.seed} />
+    </div>
 
-  <label for="seedType">Seed Type:</label>
-  <input type="text" id="seedType" bind:value={card.seed} />
+    <div>
+      <label for="period">Period:</label>
+      <input type="text" id="period" bind:value={card.period} />
+    </div>
 
-  <label for="period">Period:</label>
-  <input type="text" id="period" bind:value={card.period} />
-
+  </div>
   <button type="submit">Submit</button>
 </form>

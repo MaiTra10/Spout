@@ -16,8 +16,33 @@
       set: false
     }
     cards = [...cards, card]; // Add a new card to the array
+
+    fetch('http://192.168.1.86:12000', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(card),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to add card to the database');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // If the backend successfully adds the card, update the local state
+        cards = [...cards, data];
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle the error (show a message to the user, etc.)
+      });
+
   }
 
+  // Send a request to the backend to update the database
+  
   function updateCard(cardToUpdate) {
     cards = cards.map(card => {
       if (card === cardToUpdate) {
@@ -27,14 +52,30 @@
     });
   }
 
+  
+
   // Execute some logic after the component is mounted
   onMount(() => {
-    // You can perform any initial setup here
+    fetch('http://192.168.1.86:12000')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch cards from the backend');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Update the local state with the fetched cards
+        cards = data;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle the error (show a message to the user, etc.)
+      });
   });
 </script>
 
 
-<div class="flex flex-col justify-center items-center flex-1 w-full rounded-lg mt-6">
+<div class="flex flex-col justify-center items-center flex-1 w-full rounded-lg mt-6 gap-2">
   {#each cards as card (card.id)}
     {#if !card.set}
       <Form {card} {updateCard} />
