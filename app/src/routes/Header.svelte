@@ -18,13 +18,13 @@
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
-				<a href="/support">Support</a>
+			<li aria-current={$page.url.pathname === '/Support' ? 'page' : undefined}>
+				<a href="/Support">Support</a>
 			</li>
 		</ul>
 	</nav>
 	<div class="w-72 flex justify-end items-center ">
-		<a href="/login" class="bg-primary h-12 w-36 rounded-md flex justify-center items-center text-white">
+		<a href="" class="bg-primary h-12 w-36 rounded-md flex justify-center items-center text-white">
 			Login
 		</a>
 	</div>
