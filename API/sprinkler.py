@@ -1,7 +1,8 @@
-from socket import *
 import threading
-from _thread import *
 import simplejson as json
+from datetime import datetime
+from socket import *
+from _thread import *
 
 from MockSprinkler import MockSprinkler
 
@@ -9,9 +10,11 @@ lock = threading.Lock()
 
 sprinklers = []
 
+sprinklers.append(MockSprinkler(0, "Test One", 3.5, 1))
+
 def create_client_response(response):
 
-    #try:
+    try:
 
         return (
             f'HTTP/1.1 {response["status"]} {response["msg"]}\r\n'
@@ -21,12 +24,12 @@ def create_client_response(response):
 
         )
     
-    #except:
+    except:
 
-        #return (
-            #f'HTTP/1.1 {response["status"]} {response["msg"]}\r\n'
+        return (
+            f'HTTP/1.1 {response["status"]} {response["msg"]}\r\n'
 
-        #)
+        )
 
 def get_handler(c, function):
 
@@ -88,7 +91,12 @@ def post_handler(c, function, data):
 
     elif function == 'start':
 
-        print('started')
+        index = get_index_from_id(data[-1].split('&')[1].split('=')[1])
+
+        sprinklers[index].set_previous_start_time()
+        sprinklers[index].set_status(True)
+
+        print(sprinklers[index])
 
         response =  {
 
@@ -99,7 +107,22 @@ def post_handler(c, function, data):
 
     elif function == 'stop':
 
-        print('stopped')
+        index = get_index_from_id(data[-1].split('&')[1].split('=')[1])
+
+        sprinkler = sprinklers[index]
+
+        time_now = datetime.now()
+
+        total_seconds_now = time_now.hour * 3600 + time_now.minute * 60 + time_now.second
+        total_seconds_then = sprinkler.get_previous_start_hour() * 3600 + sprinkler.get_previous_start_min() * 60 + sprinkler.get_previous_start_sec()
+        
+        time_diff = total_seconds_now - total_seconds_then
+
+        sprinkler.set_previous_run_time({'hours': time_diff // 3600, 'minutes': (time_diff % 3600) // 60, 'seconds': time_diff % 60})
+
+        sprinkler.set_status(False)
+
+        print(sprinkler)
 
         response =  {
 
@@ -121,36 +144,34 @@ def post_handler(c, function, data):
 
     c.send(client_response)
 
+def get_index_from_id(sid):
+
+    index_counter = 0
+
+    for sprinkler in sprinklers:
+
+        print(sprinkler.get_id())
+
+        if sprinkler.get_id() == int(sid):
+
+            break
+        
+        index_counter += 1
+
+    return index_counter
+
 def delete_handler(c, function, data):
 
     if function == 'remove':        
 
-        index_counter = 0
-
-        for sprinkler in sprinklers:
-
-            if sprinkler.get_id() == data[-3]:
-
-                break
-            
-            index_counter += 1
-
-        print(sprinklers)
+        index_counter = get_index_from_id(data[-3])
 
         del sprinklers[index_counter]
-
-        print(sprinklers)
 
         response =  {
 
             'status': 200,
             'msg': 'OK',
-            'content': {
-
-                'data': f'Successfully deleted sprinkler with ID {data[-3]}'
-
-            }
-            
 
         }
 
@@ -167,9 +188,39 @@ def delete_handler(c, function, data):
 
     c.send(client_response)
 
-def put_handler(c, function):
+def put_handler(c, function, data):
 
     if function == 'update':
+
+        if data[-1].split('&')[1].split('=')[0] == 'auto_status':
+
+            index = get_index_from_id(data[-1].split('&')[0].split('=')[1])
+
+            sprinklers[index].set_if_sprinkler_timer_auto(bool(data[-1].split('&')[1].split('=')[1]))
+
+        elif data[-1].split('&')[1].split('=')[0] == 'name':
+
+            index = get_index_from_id(data[-1].split('&')[0].split('=')[1])
+
+            sprinklers[index].set_sprinkler_name(str(data[-1].split('&')[1].split('=')[1]))
+
+        elif data[-1].split('&')[1].split('=')[0] == 'period':
+
+            index = get_index_from_id(data[-1].split('&')[0].split('=')[1])
+
+            sprinklers[index].set_period(int(data[-1].split('&')[1].split('=')[1]))
+
+        elif data[-1].split('&')[1].split('=')[0] == 'seed_type':
+
+            index = get_index_from_id(data[-1].split('&')[0].split('=')[1])
+
+            sprinklers[index].set_seed_type(int(data[-1].split('&')[1].split('=')[1]))
+
+        elif data[-1].split('&')[1].split('=')[0] == 'status':
+
+            index = get_index_from_id(data[-1].split('&')[0].split('=')[1])
+
+            sprinklers[index].set_status(bool(data[-1].split('&')[1].split('=')[1]))
 
         response =  {
 
@@ -192,8 +243,6 @@ def put_handler(c, function):
     c.send(client_response)
 
 def get_function(data):
-
-    print(data)
 
     if data[0] == 'DELETE':
 
@@ -233,12 +282,11 @@ def threaded_server(c):
 
         elif request_type == 'DELETE':
 
-            print(data)
             delete_handler(c, function, data)
 
         elif request_type == 'PUT':
 
-            put_handler(c, function)
+            put_handler(c, function, data)
 
         else:
 

@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 
 class MockSprinkler:
 
@@ -6,18 +7,21 @@ class MockSprinkler:
 
         self.sprinkler_id = sid
         self.sprinkler_name = name
-        self.sprinkler_timer_mode = 'Manual'
+        self.sprinkler_timer_auto = False
         self.period = period
         self.seed_type = seed_type
         self.status = False
         self.previous_run_time = None
-        self.previous_start_time = None
+        self.previous_start_time_day = None
+        self.previous_start_time_hour = None
+        self.previous_start_time_min = None
+        self.previous_start_time_sec = None
 
     def set_sprinkler_name(self, name):
         self.sprinkler_name = name
 
-    def set_sprinkler_timer_mode(self, mode):
-        self.sprinkler_timer_mode = mode
+    def set_if_sprinkler_timer_auto(self, auto_bool):
+        self.sprinkler_timer_auto = auto_bool
 
     def set_period(self, period):
         self.period = period
@@ -31,8 +35,14 @@ class MockSprinkler:
     def set_previous_run_time(self, run_time):
         self.previous_run_time = run_time
 
-    def set_previous_start_time(self, start_time):
-        self.previous_start_time = start_time
+    def set_previous_start_time(self):
+
+        time = datetime.now()
+
+        self.previous_start_time_day = time.date()
+        self.previous_start_time_hour = time.hour
+        self.previous_start_time_min = time.minute
+        self.previous_start_time_sec = time.second
 
     def get_id(self):
 
@@ -42,9 +52,9 @@ class MockSprinkler:
 
         return self.sprinkler_name
     
-    def get_mode(self):
+    def is_auto(self):
 
-        return self.sprinkler_timer_mode
+        return self.sprinkler_timer_auto
     
     def get_period(self):
 
@@ -62,9 +72,43 @@ class MockSprinkler:
 
         return self.previous_run_time
     
-    def get_previous_start(self):
+    def get_previous_start_day(self):
 
-        return self.previous_start_time
+        return self.previous_start_time_day
+    
+    def get_previous_start_hour(self):
+
+        return self.previous_start_time_hour
+    
+    def get_previous_start_min(self):
+
+        return self.previous_start_time_min
+    
+    def get_previous_start_sec(self):
+
+        return self.previous_start_time_sec
+    
+    def __str__(self):
+
+        attributes = {
+
+            "sprinkler_id": self.sprinkler_id,
+            "sprinkler_name": self.sprinkler_name,
+            "sprinkler_timer_mode": self.sprinkler_timer_auto,
+            "period": self.period,
+            "seed_type": self.seed_type,
+            "status": self.status,
+            "previous_run_time": self.previous_run_time,
+            "previous_start_day": self.previous_start_time_day,
+            "previous_start_hour": self.previous_start_time_hour,
+            "previous_start_min": self.previous_start_time_min,
+            "previous_start_sec": self.previous_start_time_sec,
+        
+        }
+
+        output = "\n".join([f"{key}: {value}" for key, value in attributes.items()])
+
+        return output
 
 """     def turn_on(self):
 

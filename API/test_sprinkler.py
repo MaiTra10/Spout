@@ -11,17 +11,30 @@ print(s.recv(1024).decode())
 s.close() """
 
 import requests
+import json
 
-data = {'function': 'add', 'id': 3, 'name': 'Back Yard Flower Sprinkler', 'period': '4', 'seed_type': 3}
+import time
 
-r = requests.post('http://10.14.101.143:12000', data)
+data = {'function': 'start', 'id': 0}
+
+r1 = requests.post('http://172.18.144.1:12000', data)
+
+time.sleep(17)
+
+data = {'function': 'stop', 'id': 0}
+
+r1 = requests.post('http://172.18.144.1:12000', data)
+
+""" data = {'function': 'add', 'id': 3, 'name': 'Back Yard Flower Sprinkler', 'period': '4', 'seed_type': 3}
+
+r1 = requests.post('http://172.18.144.1:12000', data)
 
 data = {'function': 'add', 'id': 1, 'name': 'Back Yard Flower Sprinkler', 'period': '4', 'seed_type': 3}
 
-r = requests.post('http://10.14.101.143:12000', data)
+r2 = requests.post('http://172.18.144.1:12000', data)
 
 data = {'id': '1'}
 
-r = requests.delete('http://10.14.101.143:12000', headers=data)
+r = requests.delete('http://172.18.144.1:12000', headers=data) """
 
-print(r.content)
+print(r1)
