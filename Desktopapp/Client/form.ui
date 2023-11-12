@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>365</width>
+    <height>270</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Spout</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../Lib/Spouticon.png</normaloff>../Lib/Spouticon.png</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 9pt &quot;Noto Sans&quot;;
+
+QPushButton {
+    background-color: #3498db; /* Button color */
+    color: #ffffff; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #2980b9; /* Border color */
+}
+
+QPushButton:hover {
+    background-color: #2980b9; /* Hover color */
+    border: 1px solid #3498db; /* Border color on hover */
+}
+</string>
+  </property>
+  <widget class="QLabel" name="label_6">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+     <pointsize>18</pointsize>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 700 italic 18pt &quot;Noto Sans&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../Lib/spout4.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="newWindow">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>240</y>
+     <width>91</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #3498db; /* Button color */
+    color: #ffffff; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #2980b9; /* Border color */
+}
+
+QPushButton:hover {
+    background-color: #2980b9; /* Hover color */
+    border: 1px solid #3498db; /* Border color on hover */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Add Sprinkler</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>351</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>321</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QStackedWidget {
+    border: 1px solid #3498db; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+}
+
+QWidget {
+    background-color: #ffffff; /* Background color of individual pages */
+    border-radius: 5px; /* Rounded corners for individual pages */
+}
+
+</string>
+   </property>
+   <property name="currentIndex">
+    <number>-1</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="previousButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #3498db; /* Button color */
+    color: #ffffff; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #2980b9; /* Border color */
+}
+
+QPushButton:hover {
+    background-color: #2980b9; /* Hover color */
+    border: 1px solid #3498db; /* Border color on hover */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Previous</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="nextButton">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>230</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #3498db; /* Button color */
+    color: #ffffff; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #2980b9; /* Border color */
+}
+
+QPushButton:hover {
+    background-color: #2980b9; /* Hover color */
+    border: 1px solid #3498db; /* Border color on hover */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Next</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

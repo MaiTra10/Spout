@@ -1,0 +1,9 @@
+{
+    "files": [
+        "widget.py",
+        "form.ui",
+        "dialog.h",
+        "dialog.cpp",
+        "dialog.ui"
+    ]
+}
