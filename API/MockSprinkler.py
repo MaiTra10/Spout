@@ -2,12 +2,12 @@ import time
 
 class MockSprinkler:
 
-    def __init__(self, sid, name, timer_mode, seed_type):
+    def __init__(self, sid, name, period, seed_type):
 
         self.sprinkler_id = sid
-        self.sprinker_name = name
-        self.sprinkler_timer_mode = timer_mode # Auto or Manual
-        self.schedule = []
+        self.sprinkler_name = name
+        self.sprinkler_timer_mode = 'Manual'
+        self.period = period
         self.seed_type = seed_type
         self.status = False
         self.previous_run_time = None
@@ -18,6 +18,9 @@ class MockSprinkler:
 
     def set_sprinkler_timer_mode(self, mode):
         self.sprinkler_timer_mode = mode
+
+    def set_period(self, period):
+        self.period = period
 
     def set_seed_type(self, seed_type):
         self.seed_type = seed_type
@@ -30,6 +33,38 @@ class MockSprinkler:
 
     def set_previous_start_time(self, start_time):
         self.previous_start_time = start_time
+
+    def get_id(self):
+
+        return self.sprinkler_id
+
+    def get_name(self):
+
+        return self.sprinkler_name
+    
+    def get_mode(self):
+
+        return self.sprinkler_timer_mode
+    
+    def get_period(self):
+
+        return self.period
+    
+    def get_seed_type(self):
+
+        return self.seed_type
+    
+    def get_status(self):
+
+        return self.status
+    
+    def get_previous_run(self):
+
+        return self.previous_run_time
+    
+    def get_previous_start(self):
+
+        return self.previous_start_time
 
 """     def turn_on(self):
 

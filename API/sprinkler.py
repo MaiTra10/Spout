@@ -3,7 +3,7 @@ import threading
 from _thread import *
 import simplejson as json
 
-#from MockSprinkler import MockSprinkler
+from MockSprinkler import MockSprinkler
 
 lock = threading.Lock()
 
@@ -11,23 +11,22 @@ sprinklers = []
 
 def create_client_response(response):
 
-    try:
+    #try:
 
         return (
             f'HTTP/1.1 {response["status"]} {response["msg"]}\r\n'
             f'Content-Type: application/json\r\n'
             f'Content-length: {len(response["content"])}\r\n'
-            '\r\n'
-            f'{json.dumps(response["data"])}'
+            f'{json.dumps(response["content"])}'
 
         )
     
-    except:
+    #except:
 
-        return (
-            f'HTTP/1.1 {response["status"]} {response["msg"]}\r\n'
+        #return (
+            #f'HTTP/1.1 {response["status"]} {response["msg"]}\r\n'
 
-        )
+        #)
 
 def get_handler(c, function):
 
@@ -68,7 +67,17 @@ def post_handler(c, function, data):
 
     if function == 'add':
 
-        print(data)
+        values = data[-1].split('&')[1:]
+
+        sid = values[0].split('=')[1]
+
+        name = values[1].split('=')[1].replace('+', ' ')
+
+        period = values[2].split('=')[1]
+
+        seed_type = values[3].split('=')[1]
+        
+        sprinklers.append(MockSprinkler(sid, name, period, seed_type))
 
         response =  {
 
@@ -79,6 +88,8 @@ def post_handler(c, function, data):
 
     elif function == 'start':
 
+        print('started')
+
         response =  {
 
             'status': 200,
@@ -87,6 +98,8 @@ def post_handler(c, function, data):
         }
 
     elif function == 'stop':
+
+        print('stopped')
 
         response =  {
 
@@ -108,14 +121,36 @@ def post_handler(c, function, data):
 
     c.send(client_response)
 
-def delete_handler(c, function):
+def delete_handler(c, function, data):
 
     if function == 'remove':        
+
+        index_counter = 0
+
+        for sprinkler in sprinklers:
+
+            if sprinkler.get_id() == data[-3]:
+
+                break
+            
+            index_counter += 1
+
+        print(sprinklers)
+
+        del sprinklers[index_counter]
+
+        print(sprinklers)
 
         response =  {
 
             'status': 200,
-            'msg': 'OK'
+            'msg': 'OK',
+            'content': {
+
+                'data': f'Successfully deleted sprinkler with ID {data[-3]}'
+
+            }
+            
 
         }
 
@@ -158,6 +193,8 @@ def put_handler(c, function):
 
 def get_function(data):
 
+    print(data)
+
     if data[0] == 'DELETE':
 
         function = 'remove'
@@ -166,15 +203,13 @@ def get_function(data):
 
         function = 'update'
 
+    elif data[0] == 'GET':
+
+        function = 'get'
+
     else:
 
-        if data[1] == '/':
-
-            function = data[-1].split('=')[1]
-
-        else:
-
-            function = data[1].split('=')[1]
+        function = data[-1].split('&')[0].split('=')[1]
 
     return function
 
@@ -198,7 +233,8 @@ def threaded_server(c):
 
         elif request_type == 'DELETE':
 
-            delete_handler(c, function)
+            print(data)
+            delete_handler(c, function, data)
 
         elif request_type == 'PUT':
 

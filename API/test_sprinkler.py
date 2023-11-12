@@ -12,8 +12,16 @@ s.close() """
 
 import requests
 
-data = {'function': 'add', 'id': 0, 'name': 'Front Yard Flower Sprinkler', 'timer_mode': 'Auto', 'seed_type': 0}
+data = {'function': 'add', 'id': 3, 'name': 'Back Yard Flower Sprinkler', 'period': '4', 'seed_type': 3}
 
 r = requests.post('http://10.14.101.143:12000', data)
 
-print(r)
+data = {'function': 'add', 'id': 1, 'name': 'Back Yard Flower Sprinkler', 'period': '4', 'seed_type': 3}
+
+r = requests.post('http://10.14.101.143:12000', data)
+
+data = {'id': '1'}
+
+r = requests.delete('http://10.14.101.143:12000', headers=data)
+
+print(r.content)
