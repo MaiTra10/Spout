@@ -35,6 +35,8 @@ def get_handler(c, function):
 
     if function == 'get':
 
+        
+
         response =  {
 
             'status': 200,
@@ -56,17 +58,6 @@ def get_handler(c, function):
     c.send(client_response)
 
 def post_handler(c, function, data):
-
-    """
-    self.sprinkler_id = 0
-    self.sprinker_name = None
-    self.sprinkler_timer_mode = None # Auto or Manual
-    self.schedule = []
-    self.seed_type = seed_type
-    self.status = False
-    self.previous_run_time = None
-    self.previous_start_time = None
-    """
 
     if function == 'add':
 
