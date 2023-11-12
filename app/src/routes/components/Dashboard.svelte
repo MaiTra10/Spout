@@ -72,7 +72,7 @@
 </script>
 
 
-<div class="flex flex-col justify-center items-center flex-1 w-full rounded-lg mt-6 gap-2">
+<div class="flex flex-col justify-center items-center flex-1 w-full rounded-lg mt-6 gap-5">
   {#each cards as card (card.id)}
     {#if !card.set}
       <Form {card} {updateCard} />
