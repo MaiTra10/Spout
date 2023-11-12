@@ -19,9 +19,6 @@
 
     fetch('http://192.168.1.86:12000', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(card),
     })
       .then(response => {
