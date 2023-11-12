@@ -12,3 +12,13 @@ We achieve this by creating an ecosystem of apps and systems that allow the user
   <img src="gifs and screenshots/client.gif" alt="A GIF of the server interactions" height="450">
   <img src="gifs and screenshots/server.gif" alt="A GIF of the server interactions" height="450">
 </details>
+
+<details>
+  <summary>Desktop Demo</summary>
+  <img src="gifs and screenshots/desktop.gif" alt="A GIF of the desktop app" height="450">
+</details>
+
+<details>
+  <summary>Web App Demo</summary>
+  <img src="gifs and screenshots/client.gif" alt="A GIF of the web app" height="450">
+</details>
