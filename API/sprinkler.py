@@ -80,7 +80,7 @@ def post_handler(c, function, data):
 
             'status': 200,
             'msg': 'OK',
-            'content': str(sprinklers[-1])
+            'content':f'Sprinkler with ID {sid} named {name} has been successfully added! {str(sprinklers[-1])}'
 
         }
 
