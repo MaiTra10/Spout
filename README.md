@@ -8,7 +8,7 @@ We achieve this by creating an ecosystem of apps and systems that allow the user
 # Demos :tv:
 
 <details>
-  <summary>Server Sprinkler Demo (Backend)</summary>
+  <summary>Server Sprinkler Demo (Backen > Python > Sockets)</summary>
   <img src="gifs and screenshots/client.gif" alt="A GIF of the server interactions" height="450">
   <img src="gifs and screenshots/server.gif" alt="A GIF of the server interactions" height="450">
 </details>
