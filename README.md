@@ -8,17 +8,17 @@ We achieve this by creating an ecosystem of apps and systems that allow the user
 # Demos :tv:
 
 <details>
-  <summary>Server Sprinkler Demo</summary>
+  <summary>Server Sprinkler Demo (Backend)</summary>
   <img src="gifs and screenshots/client.gif" alt="A GIF of the server interactions" height="450">
   <img src="gifs and screenshots/server.gif" alt="A GIF of the server interactions" height="450">
 </details>
 
 <details>
-  <summary>Desktop Demo</summary>
+  <summary>Desktop Demo (Python > qt6)</summary>
   <img src="gifs and screenshots/desktop.gif" alt="A GIF of the desktop app" height="450">
 </details>
 
 <details>
-  <summary>Web App Demo</summary>
-  <img src="gifs and screenshots/client.gif" alt="A GIF of the web app" height="450">
+  <summary>Web App Demo (Svelte)</summary>
+  <img src="gifs and screenshots/webapp.gif" alt="A GIF of the web app" height="450">
 </details>
