@@ -8,7 +8,7 @@
 </style>
 
 <svelte:head>
-    <title>About</title>
+    <title>Spout | About</title>
     <meta name="description" content="About Spouts Smart Irrigation System" />
 </svelte:head>
 

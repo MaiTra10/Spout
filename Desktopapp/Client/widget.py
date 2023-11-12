@@ -7,6 +7,11 @@ sys.path.append('C:\\Users\\Ricky\\Documents\\Local Programs\\Spout-1\\API')
 from WeatherChecker import WeatherChecker
 from sprinkler import post_handler, main
 import requests
+<<<<<<< Updated upstream
+=======
+
+index = int(0)
+>>>>>>> Stashed changes
 
 class CustomDialog(QDialog, Ui_Dialog):
     dataEntered = Signal(str, str)
@@ -53,12 +58,22 @@ class Widget(QWidget, Ui_Widget):
         r2 = r1.content.decode('utf-8')
         print(r2)
 
+<<<<<<< Updated upstream
         msg_box = QMessageBox()
         msg_box.setWindowTitle('Spout')
         msg_box.setText(r2)
         msg_box.exec()
 
         recommendation = "NULL"
+=======
+        data = {'function': 'add', 'id': index, 'name': str(data1), 'period': '0', 'seed_type': data2}
+
+        r1 = requests.post('http://172.18.144.1:12000', data)
+
+        print(r1.content.decode('utf-8'))
+
+        reccomendation = "NULL"
+>>>>>>> Stashed changes
 
         if WeatherChecker('ea2af1037f4540a4844235921231111') == True:
             recommendation = "Rest easy, it will rain soon"

@@ -18,8 +18,8 @@
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/sverdle' ? 'page' : undefined}>
-				<a href="/sverdle">Support</a>
+			<li aria-current={$page.url.pathname === '/support' ? 'page' : undefined}>
+				<a href="/support">Support</a>
 			</li>
 		</ul>
 	</nav>
@@ -80,7 +80,4 @@
 		transition: color 0.2s linear;
 	}
 
-	a:hover {
-		color: var(--color-theme-1);
-	}
 </style>
