@@ -3,6 +3,11 @@ from PySide6.QtWidgets import QApplication, QWidget, QDialog, QVBoxLayout, QLabe
 from PySide6.QtCore import Signal, Qt
 from ui_form import Ui_Widget
 from ui_dialog import Ui_Dialog
+sys.path.append('C:\\Users\\Ricky\\Documents\\Local Programs\\Spout-1\\API')
+from WeatherChecker import WeatherChecker
+from sprinkler import post_handler, main
+
+index = int(0)
 
 class CustomDialog(QDialog, Ui_Dialog):
     dataEntered = Signal(str, str)  # Add a signal to pass data
@@ -54,20 +59,32 @@ class Widget(QWidget, Ui_Widget):
     def handle_dialog_data(self, data1, data2):
         # Create a new page with received data
 
+#        data = {'function': 'add', 'id': index, 'name': str(data1), 'period': '0', 'seed_type': 3}
+
+
         reccomendation = "NULL"
+
+        if WeatherChecker('ea2af1037f4540a4844235921231111') == True:
+            reccomendation = "Rest easy, it will rain soon"
+
+        else:
+            reccomendation = "Your plants will appreciate being watered as usual"
 
         new_page = QWidget(self.stackedWidget)  # Access stackedWidget from Ui_Widget
         layout = QVBoxLayout(new_page)
         label1 = QLabel(f"Spout Connected: {data1}", new_page, alignment=Qt.AlignmentFlag.AlignTop)
         label2 = QLabel(f"Seed type: {data2}", new_page)
-        label3 = QLabel(f"Reccomended Watering Cycle: {reccomendation}", new_page,  alignment=Qt.AlignmentFlag.AlignBottom)
+        label3 = QLabel("Status: Active", new_page)
+        label4 = QLabel(f"{reccomendation}", new_page,  alignment=Qt.AlignmentFlag.AlignBottom)
         layout.addWidget(label1)
         layout.addWidget(label2)
-        layout.addWidget(label3)
+        layout.addWidget(label3)S
+        layout.addWidget(label4)
 
 
         # Add the new page to the stacked widget
         self.stackedWidget.addWidget(new_page)
+#        index += 1
 
         # Set the current page to the newly added page
         self.stackedWidget.setCurrentWidget(new_page)
